@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurobotik | Final Interview Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --font-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: #0f0f12;
+            color: #fff;
+            overflow-x: hidden;
+            display: block;
+            padding: 40px 0;
+            /* Changed to 0 horizontal padding since container has it */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            /* Increased side padding for desktop */
+        }
+
+        /* Hero Header */
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(104deg, #6FCFFF 0%, #760FB9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        /* Standardized Section Titles */
+        .section-title {
+            font-size: 2.2rem;
+            margin-top: 100px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .practical-deliverables-title {
+            margin-top: 40px !important;
+        }
+
+        .interview-section .section-title {
+            border-left-color: var(--primary-purple);
+        }
+
+        /* Assessment Card */
+        .assessment-card {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        .action-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .action-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Pro Card Branding */
+        .action-item.pro-card {
+            background: linear-gradient(135deg, rgba(111, 207, 255, 0.1) 0%, rgba(118, 15, 185, 0.1) 100%);
+            border: 1px solid rgba(111, 207, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(111, 207, 255, 0.15);
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .action-item.pro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            z-index: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .action-item.pro-card:hover::before {
+            opacity: 0.2;
+        }
+
+        .action-item.pro-card * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .action-item.pro-card .card-icon {
+            background: var(--gradient) !important;
+            color: white !important;
+        }
+
+        .action-item.pro-card h3 {
+            color: var(--primary-blue);
+        }
+
+        .action-item h3 {
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .action-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Interview Questions Section */
+        .interview-section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .qa-item {
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 40px 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .qa-item:hover {
+            border-color: rgba(111, 207, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
+        }
+
+        .question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .answer {
+            color: #d1d1d6;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .answer p {
+            margin-bottom: 16px;
+        }
+
+        .answer strong {
+            color: #fff;
+        }
+
+        /* Customization for the floating chat button location */
+        .chat-toggle {
+            bottom: 40px;
+            right: 40px;
+        }
+
+        /* Test Evidence Section */
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .view-evidence {
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .view-evidence:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        /* Lightbox Modal */
+        #lightboxModal .modal-container {
+            max-width: 90vw;
+            width: auto;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+        }
+
+        #lightboxModal img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .assessment-card {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-top: 60px !important;
+                padding-left: 16px;
+            }
+
+            .assessment-card {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .qa-item {
+                padding: 32px 24px;
+            }
+
+            .question {
+                font-size: 1.15rem;
+            }
+
+            .chat-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+            }
+
+            .escalation-container>div {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>Neurobotik</h1>
+            <p style="font-size: 1.2rem; color: var(--text-secondary);">Final Interview Tasks & Practical Assessment
+                Portfolio</p>
+        </div>
+
+        <!-- Practical Deliverables -->
+        <h2 class="section-title practical-deliverables-title">Practical Deliverables</h2>
+        <div class="assessment-card">
+            <a href="https://www.loom.com/share/your-video-link" target="_blank" class="action-item">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 7l-7 5 7 5V7z" />
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                    </svg>
+                </div>
+                <h3>Architecture Walkthrough</h3>
+                <p>A technical overview of the backend orchestration, AI routing logic, and system infrastructure built
+                    for this task.</p>
+            </a>
+            <div class="action-item" id="openDocs" style="cursor: pointer;">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                </div>
+                <h3>Technical Documentation</h3>
+                <p>Structured documentation covering build assumptions, quality benchmarks, and the roadmap to
+                    enterprise deployment.</p>
+            </div>
+            <div class="action-item pro-card" id="openDemo" style="cursor: pointer;">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                </div>
+                <h3>Full-Service AI Demo</h3>
+                <p>A live testing environment for the AI assistant, featuring real-time project lookups and knowledge
+                    base retrieval.</p>
+            </div>
+            <a href="https://docs.google.com/spreadsheets/d/1gMoqzcYfmZIpuXC1sYiz5DdDZQ-STBf5aqRljfwkjcw/edit?gid=1792133730#gid=1792133730"
+                target="_blank" class="action-item" id="googleSheetLink">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                        <line x1="3" y1="9" x2="21" y2="9" />
+                        <line x1="3" y1="15" x2="21" y2="15" />
+                        <line x1="9" y1="3" x2="9" y2="21" />
+                    </svg>
+                </div>
+                <h3>Data & Analytics Audit</h3>
+                <p>Direct access to the underlying project database and automated logs used for transparency and
+                    performance tracking.</p>
+            </a>
+        </div>
+
+        <!-- Conversation Evidence -->
+        <h2 class="section-title">Conversation Evidence</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 30px; margin-top: -20px;">Direct logs demonstrating AI
+            context handling, multi-system routing, and escalation protocol.</p>
+
+        <div class="test-grid">
+            <button class="view-evidence" onclick="triggerLiveDemo('What does Neurobotik do?')">1. Service
+                Intent</button>
+            <button class="view-evidence" onclick="triggerLiveDemo('Who is Neurobotik for?')">2. Customer
+                Qualification</button>
+            <button class="view-evidence" onclick="triggerLiveDemo('How long does onboarding take?')">3. Delivery
+                Timelines</button>
+            <button class="view-evidence" onclick="triggerLiveDemo('What is your refund policy?')">4. Policy &
+                Compliance</button>
+            <button class="view-evidence" onclick="triggerLiveDemo('Check status for project #123456')">5. Multi-System
+                Routing</button>
+            <button class="view-evidence" onclick="triggerLiveDemo('I want to speak to a human')">6. Escalation
+                Logic</button>
+        </div>
+
+        <!-- Lightbox Modal Removed -->
+
+
+        <!-- Escalation Evidence -->
+        <h2 class="section-title">Escalation Evidence</h2>
+        <div class="escalation-container"
+            style="background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px; border: 1px solid rgba(255, 255, 255, 0.1);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                <div>
+                    <h3 style="color: var(--primary-blue); margin-bottom: 16px; font-size: 1.5rem;">Automated Human
+                        Handoff</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
+                        When a conversation requires human intervention (e.g., complex edge cases or explicit user
+                        requests), the AI automatically triggers an <strong>Escalation Workflow</strong>.
+                    </p>
+                    <ul
+                        style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; padding-left: 20px;">
+                        <li>Captures full conversation context & user intent</li>
+                        <li>Formats a structured HTML email for the support team</li>
+                        <li>Includes session ID and direct dashboard links</li>
+                        <li>Sent instantly via Gmail API integration</li>
+                    </ul>
+                    <div
+                        style="padding: 16px; background: rgba(118, 15, 185, 0.1); border-left: 4px solid var(--primary-purple); border-radius: 4px;">
+                        <p style="margin: 0; color: #fff; font-size: 0.95rem;"><strong>Trigger:</strong> "I want to
+                            speak to a human" or fallback loop detection.</p>
+                    </div>
+                </div>
+                <div style="box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-radius: 12px; overflow: hidden; cursor: pointer;"
+                    onclick="openLightbox('escalation_email.png')">
+                    <img src="escalation_email.png" alt="Escalation Email Screenshot"
+                        style="width: 100%; display: block; transition: transform 0.3s ease;"
+                        onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Lightbox Modal -->
+        <div id="lightboxModal" class="modal">
+            <div class="modal-backdrop" onclick="closeLightbox()"></div>
+            <div class="modal-container">
+                <img id="lightboxImg" src="" alt="Test Evidence">
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="view-evidence" onclick="closeLightbox()">Close Preview</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interview Questions -->
+        <div class="interview-section">
+            <h2 class="section-title">Final Interview Responses</h2>
+
+            <!-- Q1 -->
+            <div class="qa-item">
+                <div class="question">1. Reporting ownership: What's the most relevant monthly ops report you've owned
+                    end-to-end? What KPIs did you track and what decisions did it drive?</div>
+                <div class="answer">
+                    <p>At a real estate tech startup in India, I owned the <strong>Call Operations Report</strong> - a
+                        weekly report delivered to the ops and product leadership team. I tracked <strong>Call Volume by
+                            Intent</strong>, <strong>First-Call Resolution Rate</strong>, and <strong>Repeat Query
+                            Percentage</strong>.</p>
+                    <p>The key insight: over <strong>45%</strong> of inbound calls were repetitive inquiries - pricing,
+                        property availability, and booking status. This data drove the decision to pilot voice AI agents
+                        for those specific intents, which reduced live agent call load by <strong>32%</strong> and freed
+                        the team to focus on high-value conversations like negotiations and escalations.</p>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="qa-item">
+                <div class="question">2. Data discipline: How do you ensure the live dashboard numbers match your
+                    monthly Excel report (single source of truth, metric definitions, versioning)?</div>
+                <div class="answer">
+                    <p>Everything flows from a <strong>Single Source of Truth</strong> - typically a locked Google Sheet
+                        or database table that all automations write to. Dashboards (Looker Studio) and Excel reports
+                        both pull from this same source, never from each other.</p>
+                    <p>For versioning, I use <strong>date-stamped snapshots</strong> and maintain a metric definitions
+                        doc so "Conversion Rate" means the same thing everywhere. In n8n, I add validation nodes to
+                        compare expected vs actual row counts - this catches silent failures before they corrupt the
+                        monthly report.</p>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="qa-item">
+                <div class="question">3. Excel + analysis depth: Talk me through building a refreshable Excel report
+                    from exports: cleaning, de-duping, pivoting, and producing a one-page exec summary.</div>
+                <div class="answer">
+                    <p>I use <strong>Power Query</strong> to connect to raw CSV/JSON exports. The workflow is: 1.
+                        Auto-clean (normalize date formats, trim whitespace), 2. Remove duplicates using unique
+                        SessionIDs, 3. Merge with reference tables (agent names, intent categories).</p>
+                    <p>The output feeds into a <strong>Pivot Table</strong> grouped by week and intent type. For the
+                        exec summary, I use conditional formatting to highlight red/green on KPIs like
+                        <strong>Deflection Rate</strong> and <strong>Avg Response Time</strong> - one page, no
+                        scrolling, decision-ready.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="qa-item">
+                <div class="question">4. Root-cause analysis: Escalations jump 30% week-over-week. Talk me through your
+                    first five checks and how you'd isolate the cause.</div>
+                <div class="answer">
+                    <p>My first five checks: 1. <strong>Input Sources</strong> (Did a new marketing campaign change user
+                        intent?), 2. <strong>Knowledge Coverage</strong> (Check logs for "I don't know" responses), 3.
+                        <strong>Model Drift</strong> (Did Gemini's policy updates affect tone?), 4. <strong>API
+                            Failures</strong> (Any timeouts in the Tool nodes?), 5. <strong>Session Length</strong> (Are
+                        loops occurring?).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="qa-item">
+                <div class="question">5. Automation monitoring: When you automate workflows/agents, how do you monitor
+                    failures and quality drift over time? What do you track weekly?</div>
+                <div class="answer">
+                    <p>Weekly I track three things: <strong>Fallback Rate</strong> (target &lt;10%),
+                        <strong>Negative Feedback %</strong>, and <strong>Workflow Error Count</strong> in n8n. If
+                        fallback exceeds the threshold, I review knowledge base coverage first.
+                    </p>
+                    <p>Beyond dashboards, I also <strong>spot-check 5-10 random conversations</strong> weekly to catch
+                        quality drift that metrics alone won't surface - tone issues, edge cases, or subtle
+                        hallucinations.</p>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="qa-item">
+                <div class="question">6. Incident scenario: A client says the assistant is 'making things up' in edge
+                    cases. What steps do you take in 48 hours to diagnose and fix?</div>
+                <div class="answer">
+                    <p><strong>Immediate Action (0-12h):</strong> Pull the audit logs of the hallucination and
+                        temporarily dial back the model temperature. <strong>Root Cause (12-36h):</strong> Add the
+                        problematic edge case to our "Ground Truth" test suite. <strong>Fix (36-48h):</strong> Update
+                        the system prompt with a <em>negative constraint</em> and redeploy the n8n logic.</p>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="qa-item">
+                <div class="question">7. Dashboard maintenance: If we start with Looker Studio + Google Sheets and later
+                    move to BigQuery, what's your approach to data modeling and ongoing upkeep?</div>
+                <div class="answer">
+                    <p>For the migration: I use n8n to handle ETL, writing to BigQuery instead of Sheets directly. Key
+                        is <strong>flattening nested JSON early</strong> in the pipeline so SQL queries stay clean and
+                        performant.</p>
+                    <p>For ongoing upkeep: I document schema changes in a changelog, and Looker dashboards point to
+                        <strong>views</strong> (not raw tables) - so I can modify the underlying structure without
+                        breaking live reports.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="qa-item">
+                <div class="question">8. Have you worked directly with Client? Can you give us your two-minute
+                    explanation of a monthly report to a non-technical client: what changed, why it matters, what we do
+                    next.</div>
+                <div class="answer">
+                    <p><em>"This month, we saw 40% of your customer questions handled entirely by the AI without
+                            reaching your team. The main change was adding the 'Project Lookup' tool, which saved your
+                            ops team ~45 hours. Next month, we’ll expand this to handle refund requests directly."</em>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="qa-item">
+                <div class="question">9. Team collaboration: Can you commit to weekly/bi-weekly check-ins and client
+                    calls during launch weeks? What are your realistic response times and availability?</div>
+                <div class="answer">
+                    <p>Absolutely. I understand that launch weeks are high-stakes. I can commit to <strong>weekly
+                            syncs</strong> and provide a <strong>24-hour response window</strong> for critical issues.
+                        For launch periods, I'm available for real-time monitoring of live chat sessions.</p>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="qa-item">
+                <div class="question">10. If we hire you, what parts of this role are you not confident you can own
+                    end-to-end?</div>
+                <div class="answer">
+                    <p>I am highly confident in the <strong>technical automation (n8n)</strong> and <strong>AI
+                            engineering (RAG/Prompting)</strong>. My focus area for growth is <strong>direct client
+                            interaction</strong> - presenting reports, handling pushback, and calibrating tone for
+                        different stakeholders. That said, it's also what I'm most looking forward to: Neurobotik's
+                        client mix means exposure to <em>different industries and business models</em>, and I see that
+                        as a fast-track to sharpening those skills.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documentation Modal -->
+    <div id="docsModal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Technical Documentation</h2>
+                <button class="close-modal" id="closeDocs">&times;</button>
+            </div>
+            <div class="modal-body markdown-content" id="docsContent">
+                <!-- Content will be injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container chat-modal-container">
+            <div class="modal-header chat-modal-header">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <img src="logo.png" alt="Neurobotik">
+                    </div>
+                    <div class="header-text">
+                        <h1 class="brand-name" style="margin-bottom:0">NEUROBOTIK</h1>
+                        <span class="status-indicator">
+                            <span class="status-dot"></span>
+                            AI Assistant Online
+                        </span>
+                    </div>
+                </div>
+                <button class="close-modal" id="closeChat">&times;</button>
+            </div>
+            <div class="chat-widget-embedded">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">
+                            <img src="logo.png" alt="NB">
+                        </div>
+                        <div class="message-content">
+                            <p>Hey, I'm the Demo AI Assistant. I know all about Neurobotik's services and can check your
+                                project status! How can I help?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <div class="input-container">
+                        <textarea id="messageInput" placeholder="Type your message..." rows="1"></textarea>
+                        <button class="send-btn" id="sendBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="powered-by">Powered by <span class="gradient-text">Neurobotik AI</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="chat.js"></script>
+</body>
+
+</html>
