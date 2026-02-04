@@ -491,7 +491,7 @@
                     <p>The output feeds into a <strong>Pivot Table</strong> grouped by week and intent type. For the
                         exec summary, I use conditional formatting to highlight red/green on KPIs like
                         <strong>Deflection Rate</strong> and <strong>Avg Response Time</strong> - one page, no
-                        scrolling, decision-ready.
+                        scrolling, with a <strong>30-second read time target</strong>, decision-ready.
                     </p>
                 </div>
             </div>
@@ -507,6 +507,7 @@
                             Failures</strong> (Any timeouts in the Tool nodes?), 5. <strong>Session Length</strong> (Are
                         loops occurring?).
                     </p>
+                    <p>To isolate the cause, I cross-reference these in a <strong>2x2 matrix</strong>: timing (when did it start?) vs. scope (which intents?). This usually pinpoints whether it's a data issue, model issue, or upstream traffic change.</p>
                 </div>
             </div>
 
@@ -519,7 +520,7 @@
                         <strong>Negative Feedback %</strong>, and <strong>Workflow Error Count</strong> in n8n. If
                         fallback exceeds the threshold, I review knowledge base coverage first.
                     </p>
-                    <p>Beyond dashboards, I also <strong>spot-check 5-10 random conversations</strong> weekly to catch
+                    <p>Beyond dashboards, I also <strong>spot-check 5-10 random conversations every Monday</strong> to catch
                         quality drift that metrics alone won't surface - tone issues, edge cases, or subtle
                         hallucinations.</p>
                 </div>
@@ -531,9 +532,10 @@
                     cases. What steps do you take in 48 hours to diagnose and fix?</div>
                 <div class="answer">
                     <p><strong>Immediate Action (0-12h):</strong> Pull the audit logs of the hallucination and
-                        temporarily dial back the model temperature. <strong>Root Cause (12-36h):</strong> Add the
+                        temporarily dial back the model temperature (lower temperature = more deterministic, less creative outputs). Send the client a brief status update acknowledging the issue. <strong>Root Cause (12-36h):</strong> Add the
                         problematic edge case to our "Ground Truth" test suite. <strong>Fix (36-48h):</strong> Update
                         the system prompt with a <em>negative constraint</em> and redeploy the n8n logic.</p>
+                    <p><strong>Rollback Plan:</strong> If the fix introduces regressions, I keep the previous workflow version tagged in n8n so we can revert within minutes.</p>
                 </div>
             </div>
 
@@ -584,9 +586,10 @@
                     <p>I am highly confident in the <strong>technical automation (n8n)</strong> and <strong>AI
                             engineering (RAG/Prompting)</strong>. My focus area for growth is <strong>direct client
                             interaction</strong> - presenting reports, handling pushback, and calibrating tone for
-                        different stakeholders. That said, it's also what I'm most looking forward to: Neurobotik's
+                        different stakeholders.</p>
+                    <p>That said, it's also what I'm most looking forward to: Neurobotik's
                         client mix means exposure to <em>different industries and business models</em>, and I see that
-                        as a fast-track to sharpening those skills.</p>
+                        as a fast-track to sharpening those skills. I'm already working on this by presenting technical updates to non-technical stakeholders in my current projects and actively seeking feedback on clarity.</p>
                 </div>
             </div>
         </div>
