@@ -25,6 +25,7 @@ const closeDocs = document.getElementById('closeDocs');
 const chatMessages = document.getElementById('chatMessages');
 const messageInput = document.getElementById('messageInput');
 const sendBtn = document.getElementById('sendBtn');
+const clearChatBtn = document.getElementById('clearChatBtn');
 const docsContent = document.getElementById('docsContent');
 
 // Initialize
@@ -47,6 +48,7 @@ function init() {
 
     // Send message
     sendBtn.addEventListener('click', sendMessage);
+    clearChatBtn.addEventListener('click', clearChat);
     messageInput.addEventListener('keydown', handleKeyDown);
 
     // Auto-resize textarea
@@ -312,6 +314,30 @@ function autoResizeTextarea() {
 // Generate session ID
 function generateSessionId() {
     return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// Clear chat logic
+function clearChat() {
+    if (!confirm('Are you sure you want to clear the conversation?')) return;
+
+    // Clear the UI
+    chatMessages.innerHTML = `
+        <div class="message bot-message">
+            <div class="message-avatar">
+                <img src="logo.png" alt="NB">
+            </div>
+            <div class="message-content">
+                <p>Hey, I'm the Demo AI Assistant. I know all about Neurobotik's services and can check your project status! How can I help?</p>
+            </div>
+        </div>
+    `;
+
+    // Reset the session ID to clear n8n memory
+    CONFIG.sessionId = generateSessionId();
+
+    // Reset input
+    messageInput.value = '';
+    autoResizeTextarea();
 }
 
 // Initialize on DOM ready
