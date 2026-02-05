@@ -37,3 +37,4 @@ When a project search is triggered:
 2. **Database Integration:** Swap the Google Sheet for the client's actual production database (PostgreSQL, HubSpot API, etc.) for real-time accuracy.
 3. **Advanced Security:** Implement PII (Personally Identifiable Information) masking nodes to ensure user data is stripped before reaching the AI model.
 4. **Human-in-the-Loop:** Connect the escalation trigger to a live Slack or Zendesk channel for immediate human takeover.
+5. **Authentication Guardrails:** For production environments, we implement JWT-based authentication for the chat-widget backend and SSO integration to ensure only authorized users can access sensitive project data or trigger system lookups.
